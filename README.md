@@ -169,10 +169,6 @@ That's it! Your Kortix platform will be running with Suna ready to assist you.
 
 Just use "setup.py". Ty mate.
 
-## 📄 License
-
-Kortix is licensed under the Apache License, Version 2.0. See [LICENSE](./LICENSE) for the full license text.
-
 ---
 
 <div align="center">
