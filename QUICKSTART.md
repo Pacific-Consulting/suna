@@ -151,17 +151,160 @@ This wizard will guide you through configuring all available services.
 
 ## Troubleshooting
 
-**Redis connection error:**
-- Make sure Docker is running
-- Verify Redis is running: `docker compose ps`
+### Redis connection error
 
-**Supabase connection error:**
-- Verify your keys are correct in `.env`
-- For local Supabase, make sure it's running: `cd backend && npx supabase status`
+**Problem:** Backend can't connect to Redis
 
-**Frontend can't connect to backend:**
+**Solution:**
+```bash
+# Make sure Docker is running
+docker --version
+
+# Check if Redis is running
+docker compose ps
+
+# If not running, start Redis
+docker compose -f docker-compose.simple.yaml up -d
+# OR
+docker compose up redis -d
+```
+
+### Supabase connection error
+
+**Problem:** "Could not connect to Supabase" or authentication errors
+
+**Solution:**
+- Verify your keys are correct in `backend/.env`
+- For local Supabase:
+  ```bash
+  cd backend
+  npx supabase status  # Check if it's running
+  npx supabase start   # Start if needed
+  ```
+- For cloud Supabase:
+  - Go to your project settings → API
+  - Verify URL and keys are correct
+  - Make sure the project is not paused
+
+### Frontend can't connect to backend
+
+**Problem:** Frontend shows connection errors
+
+**Solution:**
 - Make sure backend is running on port 8000
-- Check `NEXT_PUBLIC_BACKEND_URL` in `frontend/.env.local`
+  ```bash
+  # Check if backend is running
+  curl http://localhost:8000/health
+  ```
+- Verify `NEXT_PUBLIC_BACKEND_URL` in `frontend/.env.local`:
+  ```bash
+  NEXT_PUBLIC_BACKEND_URL="http://localhost:8000/api"
+  ```
+- Check for port conflicts:
+  ```bash
+  lsof -i :8000  # On macOS/Linux
+  netstat -ano | findstr :8000  # On Windows
+  ```
+
+### Dependencies installation fails
+
+**Problem:** `uv run` or `npm install` fails
+
+**Solution:**
+- Make sure you have the right versions:
+  ```bash
+  node --version  # Should be 18+
+  python --version  # Should be 3.11+
+  uv --version    # Should be latest
+  ```
+- For backend:
+  ```bash
+  cd backend
+  rm -rf .venv
+  uv sync
+  ```
+- For frontend:
+  ```bash
+  cd frontend
+  rm -rf node_modules package-lock.json
+  npm install
+  ```
+
+### Worker not processing tasks
+
+**Problem:** Background tasks aren't running
+
+**Solution:**
+- Check if worker is running:
+  ```bash
+  cd backend
+  uv run dramatiq run_agent_background
+  ```
+- Verify Redis connection in worker logs
+- Make sure `REDIS_HOST` is set correctly in `.env`
+
+### LLM API errors
+
+**Problem:** "API key invalid" or LLM errors
+
+**Solution:**
+- Verify your API key is correct in `backend/.env`
+- Check your API provider's dashboard for:
+  - Key is active
+  - Sufficient credits/quota
+  - No rate limiting
+- Try a different LLM provider if available
+
+### Port already in use
+
+**Problem:** "Address already in use" error
+
+**Solution:**
+```bash
+# Find what's using the port
+# For port 3000 (frontend)
+lsof -ti:3000 | xargs kill -9  # macOS/Linux
+netstat -ano | findstr :3000   # Windows
+
+# For port 8000 (backend)
+lsof -ti:8000 | xargs kill -9  # macOS/Linux
+netstat -ano | findstr :8000   # Windows
+```
+
+### Database migration errors
+
+**Problem:** Supabase migrations fail
+
+**Solution:**
+```bash
+cd backend
+npx supabase db reset  # For local Supabase
+# Then restart the backend
+```
+
+### Still having issues?
+
+1. **Check logs:**
+   - Backend: Look at terminal where `api.py` is running
+   - Frontend: Check browser console (F12) and terminal
+   - Worker: Check terminal where dramatiq is running
+
+2. **Clean start:**
+   ```bash
+   # Stop everything
+   docker compose down
+   
+   # Clean and restart
+   cd backend && npx supabase stop
+   cd backend && npx supabase start
+   docker compose up redis -d
+   
+   # Then start backend, worker, and frontend again
+   ```
+
+3. **Get help:**
+   - [GitHub Issues](https://github.com/kortix-ai/suna/issues)
+   - [Discord Community](https://discord.gg/Py6pCBUUPw)
 
 ## Next Steps
 

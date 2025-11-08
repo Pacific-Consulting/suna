@@ -1143,11 +1143,13 @@ class SetupWizard:
             )
         else:
             print_info(
-                "LLM providers are OPTIONAL tools that enable AI features in Suna.")
+                "LLM providers enable AI features in Suna. At least one is required.")
             print_info(
-                "Supported: Anthropic (Recommended), OpenAI, Groq, OpenRouter, xAI, Google Gemini, OpenAI Compatible, AWS Bedrock."
+                "Supported: Anthropic, OpenAI, Groq, OpenRouter, xAI, Google Gemini, OpenAI Compatible, AWS Bedrock."
             )
-            print_warning("RECOMMENDED: Start with Anthropic Claude for the best experience.")
+            print_info(
+                "💡 Free tiers available: Groq (fast & free), Google Gemini (free tier)")
+            print_warning("RECOMMENDED: Anthropic Claude for best quality, or Groq for free fast inference.")
 
         # Don't clear existing keys if we're updating
         if not has_existing:
