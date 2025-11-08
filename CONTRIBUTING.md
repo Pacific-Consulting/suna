@@ -12,40 +12,55 @@ Thank you for your interest in contributing to Suna! This document outlines the 
 
 ## Development Setup
 
-### Quick Setup
+### Quick Setup (Recommended)
 
-The easiest way to get started is using our setup wizard:
+The fastest way to get started is using our quick start guide:
+
+```bash
+# Follow the 5-minute quick start
+# See QUICKSTART.md for detailed instructions
+```
+
+This sets up Suna with minimal dependencies (Supabase + 1 LLM key) so you can start developing immediately.
+
+### Full Setup
+
+For a complete development environment with all features:
 
 ```bash
 python setup.py
+# Choose "Full Setup" mode when prompted
 ```
 
-This will guide you through configuring all required services and dependencies.
+This will guide you through configuring all required and optional services.
 
 ### Detailed Setup Instructions
 
 For detailed setup instructions, please refer to:
 
-- [Self-Hosting Guide](docs/SELF-HOSTING.md) - Complete setup instructions
+- [Quick Start Guide](./QUICKSTART.md) - 5-minute minimal setup
+- [API Keys & Feature Guide](./docs/API_KEYS_GUIDE.md) - Understanding what each service enables
 - [Backend Development Setup](backend/README.md) - Backend-specific development
 - [Frontend Development Setup](frontend/README.md) - Frontend-specific development
 
 ### Required Services
 
-Before contributing, ensure you have access to:
+Before contributing, ensure you have access to the minimum requirements:
 
 **Required:**
 
-- Supabase project (database and auth)
-- LLM provider API key (OpenAI, Anthropic, or OpenRouter)
-- Daytona account (for agent execution)
-- Tavily API key (for search)
+- Supabase project (database and auth) - Free local or cloud option
+- LLM provider API key (OpenAI, Anthropic, Groq, or OpenRouter) - Many have free tiers
+
+**Optional (for specific features):**
+
+- Daytona account (for sandboxed agent execution)
+- Tavily API key (for web search)
 - Firecrawl API key (for web scraping)
-
-**Optional:**
-
 - RapidAPI key (for additional tools)
 - Custom MCP server configurations
+
+See [API Keys Guide](./docs/API_KEYS_GUIDE.md) for complete details including free tier options and cost estimates.
 
 ## Code Style Guidelines
 
