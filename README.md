@@ -178,7 +178,17 @@ The wizard guides you through configuring all available integrations with progre
 
 - **Quick & Easy:** [Quick Start Guide](./QUICKSTART.md) - 5 minutes to get running
 - **Full Featured:** Run `python setup.py` for interactive setup with all services
-- **Manual Setup:** See [detailed documentation](./docs/SELF-HOSTING.md) if it exists
+- **Understanding Services:** [API Keys & Feature Guide](./docs/API_KEYS_GUIDE.md) - Learn what each service enables
+
+### What You'll Need
+
+**Minimum (5 min setup):**
+- Supabase (free local or cloud)
+- One LLM API key (many have free tiers)
+
+**Optional (adds features):**
+- Web search, scraping, sandboxes, and more
+- See [API Keys Guide](./docs/API_KEYS_GUIDE.md) for details
 
 ---
 
@@ -186,6 +196,6 @@ The wizard guides you through configuring all available integrations with progre
 
 **Ready to build your first AI agent?** 
 
-[Get Started](./docs/SELF-HOSTING.md) • [Join Discord](https://discord.gg/Py6pCBUUPw) • [Follow on Twitter](https://x.com/kortix)
+[Quick Start](./QUICKSTART.md) • [API Keys Guide](./docs/API_KEYS_GUIDE.md) • [Join Discord](https://discord.gg/Py6pCBUUPw) • [Follow on Twitter](https://x.com/kortix)
 
 </div>

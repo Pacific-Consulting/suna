@@ -109,21 +109,29 @@ With just Supabase + 1 LLM key, you get:
 
 ## Adding Optional Features
 
-To enable additional features, add the corresponding API keys to your `.env` file:
+To enable additional features, add the corresponding API keys to your `.env` file.
 
-### Web Search
+📖 **See [API Keys & Feature Guide](./docs/API_KEYS_GUIDE.md) for complete details on:**
+- What each service enables
+- How to get free API keys
+- Cost estimates
+- Feature availability matrix
+
+### Quick Reference
+
+**Web Search** (Tavily):
 ```bash
 TAVILY_API_KEY=your_key_here
 ```
-Get a key at [tavily.com](https://tavily.com)
+Free tier: 1,000 searches/month at [tavily.com](https://tavily.com)
 
-### Web Scraping
+**Web Scraping** (Firecrawl):
 ```bash
 FIRECRAWL_API_KEY=your_key_here
 ```
 Get a key at [firecrawl.dev](https://firecrawl.dev)
 
-### Sandboxed Execution
+**Sandboxed Execution** (Daytona):
 ```bash
 DAYTONA_API_KEY=your_key_here
 DAYTONA_SERVER_URL=https://app.daytona.io/api
